@@ -1,0 +1,76 @@
+version: '3.3'
+
+# For staging or production
+services:
+
+
+    # Reverse Proxy Server to services
+    nginx-proxy:
+        image: jwilder/nginx-proxy
+        container_name: nginx-proxy
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+            - "nginx-conf:/etc/nginx/conf.d"
+            - "nginx-vhost:/etc/nginx/vhost.d"
+            - "html:/usr/share/nginx/html"
+            - "certs:/etc/nginx/certs:ro"
+            
+        restart: on-failure:10
+        labels:
+            - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
+
+    
+    # Let's encrypt SSL Certificates
+    letsencrypt-nginx-proxy-companion:
+        image: jrcs/letsencrypt-nginx-proxy-companion
+        restart: unless-stopped
+        container_name: letsencrypt-nginx-proxy-companion
+        volumes:
+            - "/var/run/docker.sock:/var/run/docker.sock:ro"
+            - "nginx-conf:/etc/nginx/conf.d"
+            - "nginx-vhost:/etc/nginx/vhost.d"
+            - "html:/usr/share/nginx/html"
+            - "certs:/etc/nginx/certs:rw"
+
+        depends_on: # Make sure we start nginx proxy container first
+            - nginx-proxy
+
+    
+    # API Backend
+    api_multiplica_colors:
+        
+        build: ./api
+        container_name: com_multiplica_colors_test_api
+        restart: on-failure:10
+        ports:
+            - 8080:8080
+
+        environment: 
+            PRODUCTION_SERVER: 'yes'
+            VIRTUAL_HOST: apicolors.fmunoz.cl
+            VIRTUAL_PORT: 8080
+            LETSENCRYPT_HOST: apicolors.fmunoz.cl
+            LETSENCRYPT_EMAIL: fmunoztorrent@gmail.com
+            MYSQL_DATABASE: color-db
+            MYSQL_USER: root
+            MYSQL_PASSWORD: password
+            MYSQL_HOST: password
+            LISTENING_PORT: 8000
+
+
+# Volumes between nginx proxy and lets encrypt companion
+volumes:
+    nginx-conf:
+    nginx-vhost:
+    html:
+    certs:
+
+
+# Networks between proxy and services
+networks:
+  default:
+    external:
+      name: nginx-proxy             
