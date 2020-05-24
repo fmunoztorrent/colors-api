@@ -4,7 +4,6 @@ import { ColorMySQLRepository } from '../../Infrastructure/Repositories/ColorMyS
 
 const mysqlColorRepo = new ColorMySQLRepository();
 
-// Denpendecy injection here
 const getColorUseCase = getColor(mysqlColorRepo);
 const getColorsUseCase = getColors(mysqlColorRepo);
 

@@ -1,9 +1,12 @@
+// In memory Database
 import ColorRepository from "../../Domain/repo/Color"
 import Color from "../../Domain/entities/Color";
-import { ColorModel } from './ColorModel';
+import ColorModel from './InMemoryColorModel';
 
-export class ColorMySQLRepository implements ColorRepository{
 
+
+
+export class inMemoryColorRepository implements ColorRepository{
     getColors(from:number, limit:number):Promise<Color[]>{
         return ColorModel.findAll<ColorModel>({attributes: ['id', 'name', 'color'], offset: from, limit: limit, order: [['id', 'DESC']]});
     }

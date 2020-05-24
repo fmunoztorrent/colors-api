@@ -1,0 +1,12 @@
+ INSERT INTO colors (name, `year`, color, pantoneValue, createdAt, updatedAt) VALUES ('cerulean',2000,'#98B2D1','15-4020', now(), now() );
+ INSERT INTO colors (name, `year`, color, pantoneValue, createdAt, updatedAt) VALUES ('fuchsia rose',2001,'#C74375','17-2031', now(), now() );
+ INSERT INTO colors (name, `year`, color, pantoneValue, createdAt, updatedAt) VALUES ('true red',2002,'#BF1932','19-1664', now(), now() );
+ INSERT INTO colors (name, `year`, color, pantoneValue, createdAt, updatedAt) VALUES ('aqua sky',2003,'#7BC4C4','14-4811', now(), now() );
+ INSERT INTO colors (name, `year`, color, pantoneValue, createdAt, updatedAt) VALUES ('tigerlily',2004,'#E2583E','17-1456', now(), now() );
+ INSERT INTO colors (name, `year`, color, pantoneValue, createdAt, updatedAt) VALUES ('blue turquoise',2005,'#53B0AE','15-5217', now(), now() );
+ INSERT INTO colors (name, `year`, color, pantoneValue, createdAt, updatedAt) VALUES ('sand dollar',2006,'#DECDBE','13-1106', now(), now() );
+ INSERT INTO colors (name, `year`, color, pantoneValue, createdAt, updatedAt) VALUES ('chili pepper',2007,'#9B1B30','19-1557', now(), now() );
+ INSERT INTO colors (name, `year`, color, pantoneValue, createdAt, updatedAt) VALUES ('blue iris',2008,'#5A5B9F','18-3943', now(), now() );
+ INSERT INTO colors (name, `year`, color, pantoneValue, createdAt, updatedAt) VALUES ('mimosa',2009,'#F0C05A','14-0848', now(), now() );
+ INSERT INTO colors (name, `year`, color, pantoneValue, createdAt, updatedAt) VALUES ('turquoise',2010,'#45B5AA','15-5519', now(), now() );
+ INSERT INTO colors (name, `year`, color, pantoneValue, createdAt, updatedAt) VALUES ('honeysuckle',2011,'#D94F70','18-2120', now(), now() );

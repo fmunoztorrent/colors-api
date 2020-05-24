@@ -14,18 +14,30 @@ export class ColorController {
       const page = Number(request.query.page) || 0;
       const colorList = await getColors(page);
 
+
       if(responseType === 'xml'){
 
         response.set('Content-Type', 'text/xml');
-
-        const colorsXmlCompatibleList = colorList.map(colorItem=>{
-          return {color: [{ id: colorItem.id }, { name: colorItem.name }, { color: colorItem.color }]}
+        
+        // TODO Refactor XML response for multiple item.
+        let colorsXmlCompatibleList : any = [{ _attr: { current_page: colorList.current_page, total_items: colorList.total_items, total_pages: colorList.total_pages} }]
+        colorList.color_list.forEach(colorItem=>{
+          colorsXmlCompatibleList.push({
+            color: [
+              { id: colorItem.id }, 
+              { name: colorItem.name }, 
+              { color: colorItem.color }
+            ]
+          })
         });
 
-        const colorXmlList = xml({colors: colorsXmlCompatibleList }, { declaration: true });
+        const xmlResponsePayload= [{ colors: colorsXmlCompatibleList },]
+
+        const colorXmlList = xml(xmlResponsePayload, { declaration: true });
         return response.status(200).send(colorXmlList);
 
       }
+      //
 
       return response.status(200).json(colorList);
 
@@ -51,6 +63,7 @@ export class ColorController {
         return response.status(404).json();
       }
 
+      //TODO Refactor
       if(responseType === 'xml'){
         response.set('Content-Type', 'text/xml');
         return response.status(200).send(xml({color: [{ id: color.id }, { name: color.name }, { color: color.color }]}));
@@ -76,6 +89,7 @@ export class ColorController {
       const responseType = request.query.format || 'json';
       const createdColor = await newColor(request.body);
 
+      //TODO Refactor
       if(responseType === 'xml'){
         response.set('Content-Type', 'text/xml');
         return response.status(201).send(xml({color: [{ id: createdColor.id }, { name: createdColor.name }, { color: createdColor.color }]}));

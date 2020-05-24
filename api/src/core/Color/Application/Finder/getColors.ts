@@ -13,7 +13,24 @@ const getColors = (repo: ColorRepository) => async(page:number=0) =>{
     }
 
     const colors: Color[] = await repo.getColors(from, limit);
-    return colors;
+
+    /**
+    * 
+    * Pagination information
+    * 
+    */
+
+    // Set current functional pagination (actual current page)
+    const currentPage = (page===0)? 1: page;    
+    const totalItems = await repo.countTotalItems();
+    const totalPages = Math.ceil(totalItems / COLORS_PER_PAGE);
+    
+    return {
+        color_list: colors,
+        current_page: currentPage,
+        total_items: totalItems,
+        total_pages: totalPages
+    }
 }
 
 export default getColors;

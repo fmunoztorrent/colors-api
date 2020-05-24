@@ -1,6 +1,8 @@
 import Color from './core/Color/Domain/entities/Color';
 import ColorEntity from './core/Color/Domain/entities/ColorEntity';
 
+// Unit tests
+
 test("Missing color name. Error thrown", ()=>{
 
     try{

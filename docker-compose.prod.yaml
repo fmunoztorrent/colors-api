@@ -57,7 +57,7 @@ services:
             MYSQL_DATABASE: color-db
             MYSQL_USER: root
             MYSQL_PASSWORD: password
-            MYSQL_HOST: password
+            MYSQL_HOST: 'mysql_host'
             LISTENING_PORT: 8000
 
 
