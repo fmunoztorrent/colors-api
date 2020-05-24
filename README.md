@@ -79,6 +79,18 @@ $ npm install
 $ npm run dev
 ```
 
+##### Herramientas/utilidades de desarrollo
+Se include script para traspasar de CSV a SQL o para injectar al API. Se requiere tener python3 instalado pero no requiere de ninguna librería adicional. Se encuentras en api/initial_data
+
+###### Exportar de CSV a SQL
+```sh
+$ sudo chmod +x importer.py && python3 importer.py > sql_colors.sql
+```
+###### Inyectar a API desde el CSV
+```sh
+$ sudo chmod +x import_csv_to_api.py && python3 import_csv_to_api.py
+```
+
 ##### Información del entorno de desarrollo
 - El archivo de configuración de la aplicación se encuentra en **src/.env**
 - Para ejecutar los tests se debe ejecutar **npm run test** en el root de la carpeta **api** (en donde se encuentra el package.json)
