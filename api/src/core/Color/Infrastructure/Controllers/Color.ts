@@ -33,7 +33,7 @@ export class ColorController {
 
       return response.status(500).json({
         error: true,
-        message: error
+        message: error.message
       });
     }
 
@@ -62,7 +62,7 @@ export class ColorController {
 
       return response.status(500).json({
         error: true,
-        message: error
+        message: error.message
       });
 
     }
@@ -87,7 +87,7 @@ export class ColorController {
 
       return response.status(500).json({
         error: true,
-        message: error
+        message: error.message
       });
     }
 

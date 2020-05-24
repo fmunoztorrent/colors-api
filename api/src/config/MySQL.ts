@@ -11,8 +11,6 @@ const MYSQL_USER = process.env.MYSQL_USER;
 const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD;
 const MYSQL_HOST = process.env.MYSQL_HOST;
 
-console.log({MYSQL_HOST});
-
 export const mySqlDatabase = new Sequelize(MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD, {
     host: MYSQL_HOST,
     dialect: 'mysql'

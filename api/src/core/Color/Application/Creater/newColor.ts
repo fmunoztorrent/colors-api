@@ -5,6 +5,8 @@ import ColorRepository from '../../Domain/repo/Color';
 // New Color Implementation
 const newColor = (repo: ColorRepository) => async(data:Color) =>{
 
+    
+
     if(data.id){
         throw new Error(("Color id not allowed on creation. Please erase it from your POST request."));
     }
