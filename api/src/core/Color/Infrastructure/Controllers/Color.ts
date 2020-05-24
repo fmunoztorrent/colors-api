@@ -18,14 +18,14 @@ export class ColorController {
       if(responseType === 'xml'){
 
         response.set('Content-Type', 'text/xml');
-        
+
         // TODO Refactor XML response for multiple item.
-        let colorsXmlCompatibleList : any = [{ _attr: { current_page: colorList.current_page, total_items: colorList.total_items, total_pages: colorList.total_pages} }]
+        const colorsXmlCompatibleList : any = [{ _attr: { current_page: colorList.current_page, total_items: colorList.total_items, total_pages: colorList.total_pages} }]
         colorList.color_list.forEach(colorItem=>{
           colorsXmlCompatibleList.push({
             color: [
-              { id: colorItem.id }, 
-              { name: colorItem.name }, 
+              { id: colorItem.id },
+              { name: colorItem.name },
               { color: colorItem.color }
             ]
           })
@@ -63,7 +63,7 @@ export class ColorController {
         return response.status(404).json();
       }
 
-      //TODO Refactor
+      // TODO Refactor
       if(responseType === 'xml'){
         response.set('Content-Type', 'text/xml');
         return response.status(200).send(xml({color: [{ id: color.id }, { name: color.name }, { color: color.color }]}));
@@ -89,7 +89,7 @@ export class ColorController {
       const responseType = request.query.format || 'json';
       const createdColor = await newColor(request.body);
 
-      //TODO Refactor
+      // TODO Refactor
       if(responseType === 'xml'){
         response.set('Content-Type', 'text/xml');
         return response.status(201).send(xml({color: [{ id: createdColor.id }, { name: createdColor.name }, { color: createdColor.color }]}));

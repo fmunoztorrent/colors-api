@@ -11,7 +11,7 @@ export default class ColorModel extends Model implements Color{
     public color!: string;
     public pantoneValue!: string;
   }
-  
+
   ColorModel.init(
     {
       id: {
@@ -38,12 +38,8 @@ export default class ColorModel extends Model implements Color{
     },
     {
       tableName: "colors",
-      sequelize: sequelize // this bit is important
+      sequelize // this bit is important
     }
   );
-  
-  try{
-    ColorModel.sync({ force: false }).then(() => console.log("Colors table created")).catch(e=>e);
-  } catch(e){
 
-  }
+  ColorModel.sync({ force: false }).then(() => console.log("Colors table created")).catch(e=>e);
